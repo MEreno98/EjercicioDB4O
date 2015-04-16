@@ -18,7 +18,6 @@ public class VentanaModEvent extends javax.swing.JFrame {
      */
     public VentanaModEvent() {
         initComponents();
-        setLocationRelativeTo(null);
     }
     public VentanaModEvent(String Nombre, String Lugar, String Fecha, String HoraI, String HoraF, String Aforo ) {
         initComponents();
@@ -237,7 +236,7 @@ public class VentanaModEvent extends javax.swing.JFrame {
             int Aforo = Integer.parseInt(jTAforo.getText());
             
             if(dok==true){
-                //EventoMod
+                ejercicioDBO4.EventoMod(jTNombre.getText(), jTLugar.getText(), jFFecha.getText(), jFHoraI.getText(), jFHoraF.getText(), Aforo);
                
                     JOptionPane.showMessageDialog(this,"Evento modificado.");
                     jBCancelar.doClick();

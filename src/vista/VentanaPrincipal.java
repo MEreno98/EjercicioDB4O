@@ -282,7 +282,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jMIListEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListEventActionPerformed
         boolean ListaB=true;
         try{
-            //Generar LIstado
+            ejercicioDBO4.GenerarListado(ListaB);
         }catch(Exception Ex){JOptionPane.showMessageDialog(this,"Error:\n"+Ex.getMessage());}
     }//GEN-LAST:event_jMIListEventActionPerformed
 

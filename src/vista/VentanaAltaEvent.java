@@ -255,7 +255,7 @@ public class VentanaAltaEvent extends javax.swing.JFrame {
     private void jMIListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIListadoActionPerformed
         boolean ListaB=true;
         try{
-            //Listado
+            ejercicioDBO4.GenerarListado(ListaB);
         }catch(Exception Ex){JOptionPane.showMessageDialog(this,"Error:\n"+Ex.getMessage());}
     }//GEN-LAST:event_jMIListadoActionPerformed
 

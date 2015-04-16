@@ -33,6 +33,7 @@ private static VentanaAltaPerson VAltaAsis;
 private static VentanaEmpresa VAltaEmp;
 private static VentanaList VList;
 private static Calendar c;
+private static String NombreSM;
 
 
 
@@ -57,11 +58,11 @@ private static Calendar c;
         VAltaEvent.setVisible(true);
         
     }
-        public static void EventoAlta(String Nombre, String Lugar, String Fecha, String HoraI, String HoraF, int Aforo) throws Exception{   
+    public static void EventoAlta(String Nombre, String Lugar, String Fecha, String HoraI, String HoraF, int Aforo) throws Exception{   
        Acontecimiento Acont = new Acontecimiento();
        
        //Nombre
-       Acont.setNombre(Nombre);
+       Acont.setNombre(Nombre.toLowerCase());
        
        //Lugar
        Acont.setLugar(Lugar);
@@ -126,9 +127,84 @@ private static Calendar c;
     
     //Modificacio Eventos
     public static void Sig_VModEVT(){        
+        boolean dok = true;
+        Acontecimiento Acont;
+        try{
+        String nombre = JOptionPane.showInputDialog(VPrincipal,"Introduzca el nombre del evento que desea modificar:").toLowerCase();
+        NombreSM = nombre;
+        Acont = ControladorBD.BuscarEventoMod(nombre);
+        if(dok==true){
+            //Nombre
+            String Nombre = Acont.getNombre();
+            //Lugar
+            String Lugar = Acont.getLugar();
+            //Fecha
+            c = Calendar.getInstance();
+            c = Acont.getFecha();           
+            Date date = c.getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String Fecha = sdf.format(date);
+            //HoraI
+            c = Calendar.getInstance();
+            c = Acont.getHoraI();
+            date = c.getTime();
+            sdf = new SimpleDateFormat("kk:mm:ss");
+            String HoraI = sdf.format(date);
+            //HoraF
+            c = Calendar.getInstance();
+            c = Acont.getHoraF();
+            date = c.getTime();
+            sdf = new SimpleDateFormat("kk:mm:ss");
+            String HoraF = sdf.format(date);
+            //Aforo
+            String Aforo = Integer.toString(Acont.getAforo());
+            
             VPrincipal.setVisible(false);
-            VModEvent = new VentanaModEvent();
-            VModEvent.setVisible(true);         
+            VModEvent = new VentanaModEvent(Nombre,Lugar,Fecha,HoraI,HoraF,Aforo);
+            VModEvent.setVisible(true);}
+        
+        }catch(NullPointerException Ex){dok = false;
+        }catch(DatoErroneo Ex){JOptionPane.showMessageDialog(VPrincipal,"Error:\nEl evento introducido no existe.");dok = false;
+        }catch(Exception Ex){JOptionPane.showMessageDialog(VPrincipal, "Error:\n"+Ex.getMessage());dok = false;}
+                     
+    }
+    public static void EventoMod(String Nombre,String Lugar, String Fecha, String HoraI, String HoraF, int Aforo)throws Exception{
+         Acontecimiento Acont = new Acontecimiento();
+       
+       //Nombre
+       Acont.setNombre(Nombre);
+       
+       //Lugar
+       Acont.setLugar(Lugar);
+       
+       //Fecha
+       //Convertir Fecha a Calendar
+            c= Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = sdf.parse(Fecha);
+            c.setTime(date);
+       Acont.setFecha(c);
+       
+       //HoraI
+       //Convertir HoraI a Calendar
+            c = Calendar.getInstance();
+            sdf = new SimpleDateFormat("kk:mm:ss");
+            date = sdf.parse(HoraI);
+            c.setTime(date); 
+       Acont.setHoraI(c);
+       
+       //HoraF
+        //Convertir HoraF a Calendar
+            c = Calendar.getInstance();
+            sdf = new SimpleDateFormat("kk:mm:ss");
+            date = sdf.parse(HoraF);
+            c.setTime(date);
+       Acont.setHoraF(c);
+       
+       //Aforo
+       Acont.setAforo(Aforo);
+       
+       ControladorBD.EventoMod(Acont, NombreSM);
     }
     public static void VModEVT_Ant(){
         VModEvent.dispose();
@@ -149,6 +225,18 @@ private static Calendar c;
         VPrincipal.setVisible(true);
     }
     //Listado
+    public static void GenerarListado(boolean ListaB)throws Exception{
+        String lista="";
+        if(ListaB==true){
+          lista = ControladorBD.ListadoEvent();
+           
+        }else{
+            
+        }
+        VList = new VentanaList(lista);
+        VList.setVisible(true);
+        
+    }
     public static void VList_Ant(){
         VList.dispose();
     }
