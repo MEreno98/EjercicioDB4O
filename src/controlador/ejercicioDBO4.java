@@ -33,7 +33,6 @@ private static VentanaAltaPerson VAltaAsis;
 private static VentanaEmpresa VAltaEmp;
 private static VentanaList VList;
 private static Calendar c;
-private static String NombreSM;
 
 
 
@@ -131,7 +130,6 @@ private static String NombreSM;
         Acontecimiento Acont;
         try{
         String nombre = JOptionPane.showInputDialog(VPrincipal,"Introduzca el nombre del evento que desea modificar:").toLowerCase();
-        NombreSM = nombre;
         Acont = ControladorBD.BuscarEventoMod(nombre);
         if(dok==true){
             //Nombre
@@ -204,7 +202,7 @@ private static String NombreSM;
        //Aforo
        Acont.setAforo(Aforo);
        
-       ControladorBD.EventoMod(Acont, NombreSM);
+       ControladorBD.EventoMod(Acont);
     }
     public static void VModEVT_Ant(){
         VModEvent.dispose();

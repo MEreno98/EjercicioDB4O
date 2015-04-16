@@ -53,6 +53,7 @@
             <Menu class="javax.swing.JMenu" name="jMenu2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Asistentes"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMIAltaAsis">
@@ -273,6 +274,7 @@
         <Component class="javax.swing.JButton" name="jBAltaAsis">
           <Properties>
             <Property name="text" type="java.lang.String" value="Alta"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAltaAsisActionPerformed"/>

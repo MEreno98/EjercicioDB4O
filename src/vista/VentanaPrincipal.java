@@ -109,6 +109,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)), "Asistentes"));
 
         jBAltaAsis.setText("Alta");
+        jBAltaAsis.setEnabled(false);
         jBAltaAsis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAltaAsisActionPerformed(evt);
@@ -186,6 +187,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu.add(jMenu1);
 
         jMenu2.setText("Asistentes");
+        jMenu2.setEnabled(false);
 
         jMIAltaAsis.setText("Alta");
         jMIAltaAsis.addActionListener(new java.awt.event.ActionListener() {

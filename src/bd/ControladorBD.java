@@ -95,22 +95,14 @@ private static Acontecimiento objetoMod;
            objetoMod = (Acontecimiento) Resultado.next(); 
            
         }
-    
+     
        return objetoMod;
 }
-   public static void EventoMod (Acontecimiento Acont,String NombreSM) throws Exception{
-       //Abrir conexion
-        db=Db4o.openFile("EjercicioDB4O");
-        
+   public static void EventoMod (Acontecimiento Acont) throws Exception{
         //Modificar
-     
-        
-        
-      
-        
+        db.delete(objetoMod);
         db.store(Acont);
-        
-        
+     
         //Cerrar Conexion
         db.close(); 
    }
